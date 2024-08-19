@@ -1,0 +1,25 @@
+<div class="sidebar">
+    <h2>{{ title }}</h2>
+
+    <hr>
+    <ng-container *ngFor="let item of menuItems">
+        <div class="nav-item" *ngIf="item.submenu; else singleLink">
+            <span class="nav-icon">{{ item.icon }}</span> {{ item.title }} <span class="nav-arrow-down">↴</span>
+            <div class="submenu">
+                <ng-container *ngFor="let subItem of item.submenu">
+                    <a [routerLink]="subItem.path" class="submenu-item"> 
+                        <span class="sub-item-icon">{{ subItem.icon }}</span>{{ subItem.title }}
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+        <ng-template #singleLink>
+            <a [routerLink]="item.path" class="nav-item">
+                <span class="nav-icon">{{ item.icon }}</span> {{ item.title }}
+            </a>
+        </ng-template>
+    </ng-container>
+    <a class="nav-item last-item" (click)="cerrarSesion()">
+        <span class="nav-icon">🚪</span> Cerrar sesión
+    </a>
+</div>

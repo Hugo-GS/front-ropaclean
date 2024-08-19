@@ -1,0 +1,67 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    background-color: #2bbbad;
+    color: white;
+    padding: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+.sidebar h2 {
+    font-size: 24px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+.nav-item {
+    position: relative;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+.nav-item:hover {
+    background-color: #1a9b8a;
+}
+.nav-icon {
+    margin-right: 10px;
+}
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding-left: 20px;
+    padding-top: 0; 
+    padding-bottom: 0; 
+}
+.submenu-item {
+    padding: 8px 6px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s; 
+    white-space: nowrap;
+}
+.submenu-item:hover {
+    background-color: #158d7d;
+}
+.nav-item:hover .submenu {
+    max-height: 200px; 
+    padding: 10px 0;
+}
+hr{
+    border: 0.1px solid #ececec;
+}
+.last-item{
+    margin-top: auto;
+}
+.sub-item-icon{
+    margin-right: 3px;
+}
+.nav-arrow-down{
+    float: right;
+    margin-right: 5px;
+}
