@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MapViewComponent } from '../map-view/map-view.component';
 import { Router } from '@angular/router';
 import { FormDataRegistrarService } from '../services/form-data-registrar.service';
@@ -11,6 +11,7 @@ import { FormDataRegistrarService } from '../services/form-data-registrar.servic
   styleUrl: './registrar-ubicacion.component.css'
 })
 export class RegistrarUbicacionComponent {
+  @ViewChild(MapViewComponent) mapView!: MapViewComponent;
   formData: any;
 
   constructor (private router: Router, private formDataRegistrarServive: FormDataRegistrarService) {
@@ -20,7 +21,9 @@ export class RegistrarUbicacionComponent {
     this.router.navigate(['/registrar'], { state: { preserveData: this.formData } });
   }
   registrarUbicacion() {
-    console.log('Ubicación registrada.');
+    const location = this.mapView.getLocation();
+    console.log('Ubicación registrada:', location);
+    console.log('Datos del formulario anterior:', this.formData);
   }
   
 }

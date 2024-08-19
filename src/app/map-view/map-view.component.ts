@@ -2,11 +2,12 @@ import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-map-view',
   standalone: true,
-  imports: [GoogleMapsModule, MapInfoWindow, MapMarker],
+  imports: [GoogleMapsModule, MapInfoWindow, MapMarker, CommonModule],
   templateUrl: './map-view.component.html',
   styleUrls: ['./map-view.component.css']
 })
@@ -14,8 +15,12 @@ export class MapViewComponent implements AfterViewInit {
   center: google.maps.LatLngLiteral = { lat: -17.783111, lng: -63.180977 }; // Coordenadas iniciales
   zoom = 10;
   selectedLocation: google.maps.LatLngLiteral = { ...this.center };
+  map!: google.maps.Map;
+  marker!: google.maps.Marker;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  
+  }
 
   ngAfterViewInit() {
     const mapContainer = this.el.nativeElement.querySelector('.map-container');
@@ -31,11 +36,18 @@ export class MapViewComponent implements AfterViewInit {
     });
 
     loader.load().then(() => {
-      const map = new google.maps.Map(mapContainer, {
+      this.map = new google.maps.Map(mapContainer, {
         center: this.center,
         zoom: this.zoom,
       });
 
+      // Manejar clics en el mapa para agregar marcadores
+      this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
+        if (event.latLng) {
+          this.moverMarker(event.latLng);
+        }
+      });
+      
       // Agregar botón de ubicación
       const locationButton = document.createElement('button');
       locationButton.textContent = 'Marcar Ubicación Actual';
@@ -61,17 +73,16 @@ export class MapViewComponent implements AfterViewInit {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
-              const pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
-              map.setCenter(pos);
+              const pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+              this.map.setCenter(pos);
               // Añadir un marcador si se desea
-              new google.maps.Marker({
+              /*new google.maps.Marker({
                 position: pos,
                 map: map,
-              });
-              map.setZoom(14);
+              });*/
+              this.map.setZoom(14);
+              this.moverMarker(pos);
             },
             () => {
               alert('Error al obtener la ubicación.');
@@ -83,17 +94,31 @@ export class MapViewComponent implements AfterViewInit {
       });
 
       // Añadir el botón al mapa
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     });
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {
-    if (event.latLng) {
-      this.selectedLocation = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng()
-      };
-      console.log('Coordenadas seleccionadas:', this.selectedLocation);
+  moverMarker(position: google.maps.LatLng) {
+    this.selectedLocation = {
+      lat: position.lat(),
+      lng: position.lng()
+    };
+    if (!this.marker) {
+      this.marker = new google.maps.Marker({
+        position: this.selectedLocation,
+        map: this.map,
+        draggable: true
+      });
     }
+    this.marker.setPosition(position);
+  
+    console.log('Coordenadas seleccionadas:', this.selectedLocation);
   }
+  
+  
+
+  getLocation(): google.maps.LatLngLiteral {
+    return this.selectedLocation;
+  }
+
 }

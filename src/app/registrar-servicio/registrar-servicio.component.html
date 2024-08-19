@@ -6,23 +6,23 @@
     <div class="search-client">
         <label for="client-code">Código Cliente:</label>
         <input type="text" [(ngModel)]="clientCode" id="client-code" placeholder="Ingrese el código del cliente" />
-        <button (click)="buscarCliente(clientCode)">Buscar</button>
+        <button class="bg-green" (click)="buscarCliente(clientCode)">Buscar</button>
     </div>
 
     <!-- Tabla de Datos del Cliente -->
     <table *ngIf="clientData.length > 0" class="client-table">
         <thead>
             <tr>
-                <th>Código</th>
+                <th>Cód Cliente</th>
                 <th>Nombre</th>
-                <th>Email</th>
+                <th>Telefono</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let client of clientData">
                 <td>{{ client.code }}</td>
                 <td>{{ client.name }}</td>
-                <td>{{ client.email }}</td>
+                <td>{{ client.tel }}</td>
             </tr>
         </tbody>
     </table>
@@ -31,7 +31,7 @@
     <div class="search-service">
         <label for="service-code">Código Servicio:</label>
         <input type="text" [(ngModel)]="serviceCode" id="service-code" placeholder="Ingrese el código del servicio" />
-        <button (click)="buscarServicio(serviceCode)">Buscar</button>
+        <button class="bg-green" (click)="buscarServicio(serviceCode)">Buscar</button>
     </div>
 
     <!-- Tabla de Servicios -->
@@ -50,7 +50,7 @@
                 <td>{{ service.description }}</td>
                 <td>{{ service.price }}</td>
                 <td>
-                    <button (click)="agregarAlCarrito(service)">Agregar</button>
+                    <button class="bg-aqua" (click)="agregarAlCarrito(service)">Agregar</button>
                 </td>
             </tr>
         </tbody>
@@ -64,12 +64,14 @@
             <ul>
                 <li *ngFor="let item of carrito; let i = index">
                     {{ item.description }} - {{ item.price }}
-                    <button (click)="quitarDelCarrito(i)">Quitar</button>
+                    <button (click)="quitarDelCarrito(i)" class="bg-orange">Quitar</button>
                 </li>
             </ul>
         </div>
         <div>
-            <button (click)="registrarVenta()">Registrar venta servicio</button>
+            <button class="bg-green" (click)="registrarVenta()">Registrar venta servicio</button>
         </div>
     </div>
 </div>
+<app-modal-alert></app-modal-alert>
+<app-modal-confirm></app-modal-confirm>

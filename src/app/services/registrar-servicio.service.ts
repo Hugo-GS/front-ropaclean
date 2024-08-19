@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 export interface Client {
   code: string;
   name: string;
-  email: string;
+  tel: string;
 }
 
 export interface Service {
@@ -18,9 +18,9 @@ export interface Service {
 })
 export class RegistrarServicioService {
   private clients: Client[] = [
-    { code: 'C001', name: 'Juan Pérez', email: 'juan@example.com' },
-    { code: 'C002', name: 'Ana López', email: 'ana@example.com' },
-    { code: 'C003', name: 'Luis García', email: 'luis@example.com' }
+    { code: 'C001', name: 'Juan Pérez', tel: '1234567' },
+    { code: 'C002', name: 'Ana López', tel: '7654321' },
+    { code: 'C003', name: 'Luis García', tel: '7531246' }
   ];
 
   private services: Service[] = [

@@ -1,0 +1,35 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  button{
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin:10px;
+  }
+  .bg-green{
+    background-color: #39bd70;
+    border: 1px solid #39bd70;
+  }
+  .bg-orange{
+    background-color: #ffb67f;
+    border: 1px solid #ffb67f;
+  }
