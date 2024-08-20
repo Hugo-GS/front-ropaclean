@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { AuthService } from '../services/auth.service';
 
 interface MenuItem {
   title: string;
@@ -17,6 +18,14 @@ interface MenuItem {
   styleUrl: './admin-inicio.component.css'
 })
 export class AdminInicioComponent {
+  nombreCompleto: string | null = "";
+  rol: string | null = "";
+  constructor(private authService: AuthService) {
+    this.nombreCompleto = this.authService.getUserNombreCompleto();
+    this.rol = this.authService.getUserRol();
+  }
+
+
   sidebarTitle = 'Sistema RopaClean';
   menuItems: MenuItem[] = [
     { title: 'Inicio', icon: '🏠', path: 'wad' },

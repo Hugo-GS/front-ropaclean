@@ -1,48 +1,59 @@
-<div class="register-container">
-  <h2>Registro</h2>
-  <form #registroForm="ngForm" (ngSubmit)="goRegistrarUbicacion()">
-    <div class="form-group">
-      <label for="nombre">Nombre: <span class="text-danger">*</span></label>
-      <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" class="form-control" required>
-      <div *ngIf="registroForm.submitted && !nombre" class="text-danger">
-        Este campo es obligatorio.
+<div class="general-container">
+  <div class="register-container">
+    <h2>Registro</h2>
+    <form #registroForm="ngForm" (ngSubmit)="goRegistrarUbicacion()">
+      <div class="form-group">
+        <label for="nombre">Nombre: <span class="text-danger">*</span></label>
+        <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" class="form-control" required>
+        <div *ngIf="registroForm.submitted && !nombre" class="text-danger">
+          Este campo es obligatorio.
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="apellidoPaterno">Apellido Paterno: <span class="text-danger">*</span></label>
-      <input type="text" id="apellidoPaterno" [(ngModel)]="apellidoPaterno" name="apellidoPaterno" class="form-control" required>
-      <div *ngIf="registroForm.submitted && !apellidoPaterno" class="text-danger">
-        Este campo es obligatorio.
+      <div class="form-group">
+        <label for="apellidoPaterno">Apellido Paterno: <span class="text-danger">*</span></label>
+        <input type="text" id="apellidoPaterno" [(ngModel)]="apellidoPaterno" name="apellidoPaterno"
+          class="form-control" required>
+        <div *ngIf="registroForm.submitted && !apellidoPaterno" class="text-danger">
+          Este campo es obligatorio.
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="apellidoMaterno">Apellido Materno: <span class="text-danger">*</span></label>
-      <input type="text" id="apellidoMaterno" [(ngModel)]="apellidoMaterno" name="apellidoMaterno" class="form-control" required>
-      <div *ngIf="registroForm.submitted && !apellidoMaterno" class="text-danger">
-        Este campo es obligatorio.
+      <div class="form-group">
+        <label for="apellidoMaterno">Apellido Materno: <span class="text-danger">*</span></label>
+        <input type="text" id="apellidoMaterno" [(ngModel)]="apellidoMaterno" name="apellidoMaterno"
+          class="form-control" required>
+        <div *ngIf="registroForm.submitted && !apellidoMaterno" class="text-danger">
+          Este campo es obligatorio.
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="ci">CI: <span class="text-danger">*</span></label>
-      <input type="text" id="ci" [(ngModel)]="ci" name="ci" class="form-control" required>
-      <div *ngIf="registroForm.submitted && !ci" class="text-danger">
-        Este campo es obligatorio.
+      <div class="form-group">
+        <label for="ci">CI: <span class="text-danger">*</span></label>
+        <input type="text" id="ci" [(ngModel)]="ci" name="ci" class="form-control" required>
+        <div *ngIf="registroForm.submitted && !ci" class="text-danger">
+          Este campo es obligatorio.
+        </div>
       </div>
-    </div>
-    <div class="form-group group-danger">
-      <label for="telefono">Teléfono: <span class="text-danger">*</span></label>
-      <input type="text" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control" required>
-      <div *ngIf="registroForm.submitted && !telefono" class="text-danger">
-        Este campo es obligatorio.
+      <div class="form-group group-danger">
+        <label for="telefono">Teléfono: <span class="text-danger">*</span></label>
+        <input type="text" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control" required>
+        <div *ngIf="registroForm.submitted && !telefono" class="text-danger">
+          Este campo es obligatorio.
+        </div>
       </div>
-    </div>
-    <div class="button-group">
-      <button type="button" (click)="volverIngreso()">
-        <span>Volver a ingreso</span>
-      </button>
-      <button type="submit" class="button">
-        Continuar
-      </button>
-    </div>
-  </form>
+      <div class="button-group">
+        <button type="button" (click)="volverIngreso()">
+          <span>Volver a ingreso</span>
+        </button>
+        <button type="submit" class="button">
+          Continuar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="group-image-title">
+    <h1>Servicios de lavanderia</h1>
+    <picture>
+      <img src="assets/img/logo.jpg" alt="">
+    </picture>
+  </div>
 </div>

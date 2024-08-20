@@ -1,9 +1,57 @@
-.register-location-container {
-  max-width: 640px;
-  margin: 50px auto;
+.general-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  background: 
+    radial-gradient(circle farthest-corner at 10% 20%, rgb(0, 0, 0) 42%, rgba(25, 25, 26, 0.853) 93.6%),
+    url('/assets/img/login-bg.jpg');
+  background-size: cover;
+  background-blend-mode: overlay;
+  opacity: 0.8;
+}
+.group-image-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  height: 650px;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.315);
+  backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+}
+
+
+picture{
+  display: block;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+picture img{
+  width: 100%;
+  height: 100%;
+}
+
+.register-location-container {
+  max-width: 640px;
+  padding: 16.6px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 }
@@ -61,4 +109,14 @@ button > svg {
 button:hover > svg {
   font-size: 1.2em;
   transform: translateX(-5px);
+}
+  /* Responsivo */
+@media (max-width: 600px) {
+  .register-location-container{
+    width: 100%;
+    height: 100%;
+  }
+  .group-image-title{
+    display:none;
+  }
 }

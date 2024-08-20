@@ -1,0 +1,12 @@
+.container-servicios{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 20%;
+}
+
+.container-servicios h1{
+    align-self: flex-start;
+}

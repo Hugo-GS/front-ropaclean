@@ -1,0 +1,10 @@
+
+<div class="container-servicios">
+<h1>Servicios</h1>
+<ng-container *ngFor="let servicio of servicios">
+    <app-card-servicio
+        [title]="servicio.title"
+        [description]="servicio.descripcion"
+        [imageUrl]="servicio.imageUrl"></app-card-servicio>
+</ng-container>
+</div>

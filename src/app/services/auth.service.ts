@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private users = [
-    { username: 'cliente1', password: 'password1', role: 'cliente', telefono: '1111111' },
-    { username: 'conductor1', password: 'password2', role: 'conductor', telefono: '2222222' },
-    { username: 'admin1', password: 'password3', role: 'admin', telefono: '3333333' },
-    { username: 'encargado1', password: 'password4', role: 'encargado', telefono: '4444444' },
+    { username: 'cliente1', password: 'password1', role: 'cliente', telefono: '1111111', nombreCompleto: "Sofia Fernandez Soto" },
+    { username: 'conductor1', password: 'password2', role: 'conductor', telefono: '2222222', nombreCompleto: "Clever Fabrica Janco" },
+    { username: 'admin1', password: 'password3', role: 'admin', telefono: '3333333', nombreCompleto: "Hugo Grimaldos Suárez" },
+    { username: 'encargado1', password: 'password4', role: 'encargado', telefono: '4444444', nombreCompleto: "Fernando Santalla" },
   ];
 
   constructor(private router: Router) {}
@@ -36,5 +36,10 @@ export class AuthService {
   getUserRol(): string | null {
     const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return user.role || null;
+  }
+
+  getUserNombreCompleto(): string | null {
+    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return user.nombreCompleto || null;
   }
 }

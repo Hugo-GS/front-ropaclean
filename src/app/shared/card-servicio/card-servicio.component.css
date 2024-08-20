@@ -1,0 +1,66 @@
+.card {
+  background: #eafefa;
+  color: #073b4c;
+  font-weight: 600;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  position: relative;
+  transition: all .5s ease;
+  gap: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card::before {
+/*  content: "32,99$";*/
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  top: 35%;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #ef476f;
+  color: aliceblue;
+  font-weight: 800;
+  transition: all .5s ease;
+}
+
+.card__image {
+  width: 50%;
+  height: initial;
+  background: rgb(6,214,160);
+  background: linear-gradient(163deg, #06d6a0 18%, rgba(17,138,178,1) 79%);
+  transition: all .5s ease;
+  background-position: center;
+  background-size: cover;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.4em;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 10px;
+}
+
+.card:hover {
+  border-top-left-radius: 35px;
+  box-shadow: 5px 5px 0px 0px #06d6a0, 10px 10px 0px 0px #118ab2, 15px 15px 0px 0px #06d6a0, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.card:hover .card__image {
+  border-top-left-radius: 25px;
+}
+
+.card:hover::before {
+  transform: scale(1.3) rotate(-30deg);
+}

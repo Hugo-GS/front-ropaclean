@@ -1,18 +1,31 @@
-<div class="login-container">
-  <h2>Iniciar Sesión</h2>
-  <form (ngSubmit)="login()">
-    <div class="form-group">
-      <label for="param1">Nombre de usuario o Teléfono:</label>
-      <input type="text" id="param1" [(ngModel)]="param1" name="param1" class="form-control" required>
+<div class="general-container">
+  <div class="login-container">
+    <div class="logo-mobile">
+      <picture>
+        <img src="assets/img/logo.jpg" alt="">
+      </picture>
     </div>
-    <div class="form-group">
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
-    </div>
-    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-    <div class="button-group">
-        <button type="submit" class="button bg-green">Ingresar</button>
-        <button type="button" class="button bg-aqua" (click)="navigateToRegister()">Registrarse</button>
-    </div>
-  </form>
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="param1">Nombre de usuario o Teléfono:</label>
+        <input type="text" id="param1" [(ngModel)]="param1" name="param1" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+      </div>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div class="button-group">
+          <button type="submit" class="button bg-green">Ingresar</button>
+          <button type="button" class="button bg-aqua" (click)="navigateToRegister()">Registrarse →</button>
+      </div>
+    </form>
+  </div>
+  <div class="group-image-title">
+    <h1>Servicios de lavanderia</h1>
+    <picture>
+      <img src="assets/img/logo.jpg" alt="">
+    </picture>
+  </div>
 </div>

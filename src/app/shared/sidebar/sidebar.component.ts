@@ -20,6 +20,8 @@ interface MenuItem {
 export class SidebarComponent {
   @Input() title: string = "";
   @Input() menuItems: MenuItem[] = [];
+  @Input() nombreUsuario: string | null = "";
+  @Input() rol: string | null = "";
 
   constructor(private authService: AuthService, private router: Router) {}
 
