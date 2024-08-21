@@ -20,20 +20,26 @@ export class LoginComponent {
     // Validamos si el usuario posee una sesion en el localstorage
     if (authService.isAuthenticated()) {
       const rol = this.authService.getUserRol();
-      this.router.navigate([`/${rol}-inicio`])
+      this.router.navigate([`/${rol}-inicio`]);
     }
   }
   
-  login() {
-    
-    if (this.authService.login(this.param1, this.password)){
-      const rol = this.authService.getUserRol();
-      this.router.navigate([`/${rol}-inicio`])
-
-    } else {
-      this.errorMessage = 'Credenciales incorrectas.';
+  async login() {
+    try {
+      const isLoggedIn = await this.authService.login(this.param1, this.password);
+      
+      if (isLoggedIn) {
+        const rol = this.authService.getUserRol();
+        this.router.navigate([`/${rol}-inicio`]);
+      } else {
+        this.errorMessage = 'Credenciales incorrectas.';
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      this.errorMessage = 'Ocurrió un error durante el inicio de sesión.';
     }
   }
+
 
   navigateToRegister() {
     this.router.navigate(['/registrar']);

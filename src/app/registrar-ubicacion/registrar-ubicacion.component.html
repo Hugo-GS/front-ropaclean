@@ -19,3 +19,8 @@
     </picture>
   </div>
 </div>
+<app-modal-registro-cliente-confirmacion 
+    *ngIf="isModalOpen" 
+    (onConfirm)="onConfirm($event)"
+    (onCancel)="onCancel()">
+  </app-modal-registro-cliente-confirmacion>

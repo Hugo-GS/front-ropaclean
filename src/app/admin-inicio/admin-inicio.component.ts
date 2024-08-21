@@ -20,9 +20,10 @@ interface MenuItem {
 export class AdminInicioComponent {
   nombreCompleto: string | null = "";
   rol: string | null = "";
+
   constructor(private authService: AuthService) {
     this.nombreCompleto = this.authService.getUserNombreCompleto();
-    this.rol = this.authService.getUserRol();
+    this.rol = "Administrador";
   }
 
 

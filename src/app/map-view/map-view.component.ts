@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { Component,Inject ,ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
@@ -18,7 +18,7 @@ export class MapViewComponent implements AfterViewInit {
   map!: google.maps.Map;
   marker!: google.maps.Marker;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(@Inject(ElementRef) private el: ElementRef,@Inject(Renderer2) private renderer: Renderer2) {
   
   }
 

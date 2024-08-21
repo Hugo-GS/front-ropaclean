@@ -1,42 +1,84 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
+
 export interface Client {
-  code: string;
-  name: string;
-  tel: string;
+  cod_cliente: number;
+  nombre: string;
+  apellido_paterno: string;
+  apellido_materno: string;
+  telefono: string;
+  lat: number;
+  lng: number;
+  ci: string;
 }
 
 export interface Service {
-  code: string;
-  description: string;
-  price: number;
+  id: number;
+  nombre: string;
+  valor: number;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegistrarServicioService {
-  private clients: Client[] = [
-    { code: 'C001', name: 'Juan Pérez', tel: '1234567' },
-    { code: 'C002', name: 'Ana López', tel: '7654321' },
-    { code: 'C003', name: 'Luis García', tel: '7531246' }
-  ];
-
-  private services: Service[] = [
-    { code: 'S001', description: 'Servicio A', price: 100 },
-    { code: 'S002', description: 'Servicio B', price: 200 },
-    { code: 'S003', description: 'Servicio C', price: 150 }
-  ];
-
   constructor() {}
 
-  buscarClientByCode(codigoCliente: string): Observable<Client[]> {
-    const result = this.clients.filter(client => client.code === codigoCliente);
-    return of(result); // Devuelve un observable
+  buscarClientByCode(codigoCliente: string): Promise<Client> {
+    const urlRequest = `http://localhost:3000/clientes/${codigoCliente}`;
+
+    return fetch(urlRequest, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          if ('cliente' in data) {
+            return data.cliente;
+          } else {
+            return { nombre: null, apellido_paterno: null };
+          }
+        } else {
+          return { nombre: null, apellido_paterno: null };
+        }
+      });
   }
 
-  getServices(): Observable<Service[]> {
-    return of(this.services); // Devuelve todos los servicios como un observable
+  getServices(): Promise<Service[]> {
+    const urlRequest = 'http://localhost:3000/servicios';
+    return fetch(urlRequest, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          return data;
+        } else {
+          return {};
+        }
+      });
+  }
+
+  postRegistrarServicio(dataRegistrarServicio: any
+) {
+    const urlRequest = 'http://localhost:3000/ventas/registrar';
+    return fetch(urlRequest, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataRegistrarServicio),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
 }

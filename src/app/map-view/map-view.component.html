@@ -1,7 +1,6 @@
 <google-map
   [center]="center"
-  [zoom]="zoom"
-  (mapClick)="addMarker($event)">
+  [zoom]="zoom">
   <map-marker
     *ngIf="selectedLocation"
     [position]="selectedLocation"

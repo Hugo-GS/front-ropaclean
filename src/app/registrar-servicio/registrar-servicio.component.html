@@ -1,77 +1,122 @@
 <div class="container">
-    <div>
+  <div>
     <h1>Registrar Servicio</h1>
 
     <!-- Buscador de Código de Cliente -->
     <div class="search-client">
-        <label for="client-code">Código Cliente:</label>
-        <input type="text" [(ngModel)]="clientCode" id="client-code" placeholder="Ingrese el código del cliente" />
-        <button class="bg-green" (click)="buscarCliente(clientCode)">Buscar</button>
+      <label for="client-code">Código Cliente:</label>
+      <input
+        type="text"
+        [(ngModel)]="clientCode"
+        id="client-code"
+        placeholder="Ingrese el código del cliente"
+      />
+      <button class="bg-green" (click)="buscarCliente(clientCode)">
+        Cargar cliente
+      </button>
     </div>
 
     <!-- Tabla de Datos del Cliente -->
-    <table *ngIf="clientData.length > 0" class="client-table">
-        <thead>
-            <tr>
-                <th>Cód Cliente</th>
-                <th>Nombre</th>
-                <th>Telefono</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let client of clientData">
-                <td>{{ client.code }}</td>
-                <td>{{ client.name }}</td>
-                <td>{{ client.tel }}</td>
-            </tr>
-        </tbody>
+    <table *ngIf="clientData.nombre != '' && clientData.nombre != null" class="client-table">
+      <thead>
+        <tr>
+          <th>Cód Cliente</th>
+          <th>Nombre completo</th>
+          <th>CI</th>
+          <th>Telefono</th>
+          <th>Ubicacion lat lng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ clientData.cod_cliente }}</td>
+          <td>
+            {{ clientData.nombre }} {{ clientData.apellido_paterno }}
+            {{ clientData.apellido_materno }}
+          </td>
+          <td>{{ clientData.ci }}</td>
+          <td>{{ clientData.telefono }}</td>
+          <td>
+            {{ clientData.lat }},{{ clientData.lng }}
+            <a [href]="ubicacionURLMaps" target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  style="fill: rgb(0, 0, 0);"
+                >
+                  <path
+                    d="M12 14c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2z"
+                  ></path>
+                  <path
+                    d="M11.42 21.814a.998.998 0 0 0 1.16 0C12.884 21.599 20.029 16.44 20 10c0-4.411-3.589-8-8-8S4 5.589 4 9.995c-.029 6.445 7.116 11.604 7.42 11.819zM12 4c3.309 0 6 2.691 6 6.005.021 4.438-4.388 8.423-6 9.73-1.611-1.308-6.021-5.294-6-9.735 0-3.309 2.691-6 6-6z"
+                  ></path>
+                </svg>
+
+            </a>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
-    <!-- Buscador de Servicio -->
-    <div class="search-service">
-        <label for="service-code">Código Servicio:</label>
-        <input type="text" [(ngModel)]="serviceCode" id="service-code" placeholder="Ingrese el código del servicio" />
-        <button class="bg-green" (click)="buscarServicio(serviceCode)">Buscar</button>
-    </div>
+  <!-- Buscador de Servicio -->
+  <div class="search-service">
+    <label for="service-code">Filtrar por nombre:</label>
+    <input
+      type="text"
+      [(ngModel)]="serviceCode"
+      (input)="filtrarServicios()"
+      id="service-code"
+      placeholder="Nombre"
+    />
+  </div>
 
     <!-- Tabla de Servicios -->
     <table *ngIf="serviceData.length > 0" class="service-table">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let service of serviceData">
-                <td>{{ service.code }}</td>
-                <td>{{ service.description }}</td>
-                <td>{{ service.price }}</td>
-                <td>
-                    <button class="bg-aqua" (click)="agregarAlCarrito(service)">Agregar</button>
-                </td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of serviceData">
+          <td>{{ service.id }}</td>
+          <td>{{ service.nombre }}</td>
+          <td>{{ service.valor }}</td>
+          <td>
+            <button class="bg-aqua" (click)="agregarAlCarrito(service)">
+              Agregar
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+  <hr />
+  <!-- Carrito de Servicios -->
+  <div class="cart-container">
+    <h2>Carrito de Servicios</h2>
+    <div class="cart">
+      <ul>
+        <li *ngFor="let item of carrito; let i = index">
+          {{ item.nombre }}  Precio: {{ item.valor }}&nbsp;
+          <button (click)="quitarDelCarrito(i)" class="bg-orange">
+            Quitar
+          </button>
+        </li>
+      </ul>
     </div>
-    <hr>
-    <!-- Carrito de Servicios -->
-    <div class="cart-container">
-        <h2>Carrito de Servicios</h2>
-        <div class="cart">
-            <ul>
-                <li *ngFor="let item of carrito; let i = index">
-                    {{ item.description }} - {{ item.price }}
-                    <button (click)="quitarDelCarrito(i)" class="bg-orange">Quitar</button>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <button class="bg-green" (click)="registrarVenta()">Registrar venta servicio</button>
-        </div>
+    <div>
+      <button class="bg-green" (click)="registrarVenta()">
+        Registrar venta servicio
+      </button>
     </div>
+  </div>
 </div>
 <app-modal-alert></app-modal-alert>
 <app-modal-confirm></app-modal-confirm>
