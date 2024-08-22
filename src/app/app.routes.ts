@@ -9,6 +9,7 @@ import { AdminInicioComponent } from './admin-inicio/admin-inicio.component';
 import { ClienteInicioComponent } from './cliente-inicio/cliente-inicio.component';
 import { authGuard } from './guards/auth.guard';
 import { ServiciosDisponiblesComponent } from './servicios-disponibles/servicios-disponibles.component';
+import { ReportesComponent } from './reportes/reportes.component';
 
 
 export const routes: Routes = [
@@ -19,7 +20,8 @@ export const routes: Routes = [
     { path: 'conductor-inicio', component: ConductorInicioComponent, canActivate: [authGuard]},
     { path: 'encargado-inicio', component: EncargadoInicioComponent, canActivate: [authGuard] },
     { path: 'admin-inicio', component: AdminInicioComponent, canActivate: [authGuard], children: [
-        { path: 'registrar-servicio', component: RegistrarServicioComponent, canActivate: [authGuard] }
+        { path: 'registrar-servicio', component: RegistrarServicioComponent, canActivate: [authGuard] },
+        { path: 'reportes', component: ReportesComponent, canActivate: [authGuard] },
     ] },
     { path: 'cliente-inicio', component: ClienteInicioComponent, canActivate: [authGuard], children: [
         {path: 'servicios-disponibles', component: ServiciosDisponiblesComponent}

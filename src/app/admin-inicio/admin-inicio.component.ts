@@ -51,10 +51,7 @@ export class AdminInicioComponent {
     {
       title: 'Reportes ',
       icon: '📊',
-      submenu: [
-        { title: 'Reportes de ventas', icon: '', path: '' },
-        { title: 'Reportes de entregas', icon: '', path: '' }
-      ], path: ''
+      path: 'reportes'
     },
   ];
 
