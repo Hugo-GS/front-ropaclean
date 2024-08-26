@@ -31,7 +31,7 @@ export class MapViewComponent implements AfterViewInit {
 
     // Cargar Google Maps
     const loader = new Loader({
-      apiKey: 'AIzaSyA9o1cZqtsqMvtCU3Jn_klbsgrqG_mgI9M',
+      apiKey: '',
       version: 'weekly',
     });
 
